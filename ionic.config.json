@@ -1,0 +1,7 @@
+{
+  "name": "oblique_strategies_app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
