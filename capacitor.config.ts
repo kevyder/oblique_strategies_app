@@ -1,9 +1,14 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'oblique_strategies_app',
-  webDir: 'dist'
+  appId: 'com.kevyder.obliquestrategies',
+  appName: 'Oblique Strategies',
+  webDir: 'dist',
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 500,
+    },
+  },
 };
 
 export default config;

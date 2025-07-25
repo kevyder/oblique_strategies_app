@@ -17,7 +17,7 @@
         </ion-fab-button>
         <ion-fab-list side="top">
           <ion-fab-button @click="router.push('/')">
-            <ion-icon :icon="homeOutline"></ion-icon>
+            <ion-icon :icon="albumsOutline"></ion-icon>
           </ion-fab-button>
         </ion-fab-list>
       </ion-fab>
@@ -38,7 +38,7 @@ import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import {
   chevronUpOutline,
-  homeOutline,
+  albumsOutline,
 } from 'ionicons/icons';
 
 
@@ -55,7 +55,7 @@ export default defineComponent({
     const router = useRouter();
     return {
       chevronUpOutline,
-      homeOutline,
+      albumsOutline,
       router
     };
   }

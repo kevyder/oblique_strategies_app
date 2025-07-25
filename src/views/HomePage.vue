@@ -104,9 +104,9 @@ export default defineComponent({
 
 .strategy-card .strategy-text {
   font-size: 24px;
-  font-weight: 500;
   color: rgb(31, 31, 31);
   text-align: center;
-  padding: 10%;
+  padding: 5%;
+  font-weight: 700;
 }
 </style>
