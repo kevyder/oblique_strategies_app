@@ -1,56 +1,112 @@
 <template>
   <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-title>Blank</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <ion-content>
+      <swiper :slidesPerView="'1.25'" :centeredSlides="true" :spaceBetween="5" :loop="true">
+        <swiper-slide v-for="(strategy, index) in strategies" :key="index">
+          <div class="strategy-card">
+            <p class="strategy-text">{{ strategy }}</p>
+          </div>
+        </swiper-slide>
+      </swiper>
 
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-      </div>
+      <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button>
+          <ion-icon :icon="chevronUpOutline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+          <ion-fab-button @click="router.push('/info')">
+            <ion-icon :icon="informationOutline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
     </ion-content>
   </ion-page>
 </template>
 
-<script setup lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+<script>
+import {
+  IonContent,
+  IonPage,
+  IonFab,
+  IonFabButton,
+  IonFabList,
+  IonIcon
+} from '@ionic/vue';
+import { defineComponent, ref, onMounted } from 'vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { useRouter } from 'vue-router';
+import { strategies as allStrategies } from '@/data/strategies';
+import {
+  chevronUpOutline,
+  contrastOutline,
+  informationOutline,
+} from 'ionicons/icons';
+
+import 'swiper/css';
+import '@ionic/vue/css/ionic-swiper.css';
+
+export default defineComponent({
+  components: {
+    Swiper,
+    SwiperSlide,
+    IonContent,
+    IonPage,
+    IonFab,
+    IonFabButton,
+    IonFabList,
+    IonIcon
+  },
+  setup() {
+    const router = useRouter();
+    const strategies = ref([]);
+
+    const shuffleArray = (array) => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+
+    onMounted(() => {
+      strategies.value = shuffleArray(allStrategies);
+    });
+
+    return {
+      strategies,
+      router,
+      chevronUpOutline,
+      informationOutline,
+      contrastOutline,
+    };
+  }
+});
 </script>
 
 <style scoped>
-#container {
+.swiper {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(30, 30, 30);
+}
+
+.strategy-card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  height: 50%;
+  background-color: rgb(230, 230, 230);
+  border-radius: 50px;
+}
+
+.strategy-card .strategy-text {
+  font-size: 24px;
+  font-weight: 500;
+  color: rgb(31, 31, 31);
   text-align: center;
-  
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  
-  color: #8c8c8c;
-  
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+  padding: 10%;
 }
 </style>
