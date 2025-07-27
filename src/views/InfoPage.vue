@@ -9,6 +9,12 @@
           <p>Designed to help artists, musicians, writers, and creatives break through mental roadblocks and approach
             their work from fresh, unexpected angles. Created in 1975 by Brian Eno and artist Peter Schmidt, this unique
             tool encourages lateral thinking by offering unconventional prompts and creative dilemmas.</p>
+          <div class="divider"></div>
+          <div class="developer-info">
+            <p>Developed by <a href="https://github.com/kevyder" target="_blank">Kevin Rodriguez</a></p>
+            <p>Version 1.0.0</p>
+            <p>Licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License 2.0</a></p>
+          </div>
         </div>
       </div>
       <ion-fab slot="fixed" vertical="bottom" horizontal="end">
@@ -62,7 +68,6 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-
 .info-wrapper {
   display: flex;
   justify-content: center;
@@ -78,9 +83,11 @@ export default defineComponent({
 }
 
 .info-title {
-  font-size: 28px;
-  text-transform: uppercase;
+  text-align: center;
+  font-size: 32px;
   font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  text-transform: uppercase;
   margin-bottom: 12px;
 }
 
@@ -89,7 +96,8 @@ export default defineComponent({
   color: #999;
   margin-bottom: 20px;
   text-transform: uppercase;
-  font-weight: normal;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .info-subtitle {
@@ -102,5 +110,41 @@ export default defineComponent({
   text-align: center;
   margin-top: 10%;
   font-size: 18px;
+}
+
+.copyright-text {
+  font-size: 14px !important;
+  color: #666;
+  margin-top: 10% !important;
+  font-style: italic;
+}
+
+.divider {
+  width: 30%;
+  height: 1px;
+  background-color: #666;
+  margin: 20px auto;
+  opacity: 0.3;
+}
+
+.developer-info {
+  margin-top: 10%;
+}
+
+.developer-info p {
+  font-size: 14px !important;
+  color: #666;
+  margin: 5px 0 !important;
+}
+
+.developer-info a {
+  color: #666;
+  text-decoration: none;
+  border-bottom: 1px dotted #666;
+}
+
+.developer-info a:hover {
+  color: #999;
+  border-bottom: 1px solid #999;
 }
 </style>
