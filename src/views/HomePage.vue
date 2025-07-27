@@ -1,13 +1,17 @@
 <template>
   <ion-page>
     <ion-content>
-      <swiper :slidesPerView="'1.25'" :centeredSlides="true" :spaceBetween="5" :loop="true">
+      <swiper :slidesPerView="'1.4'" :centeredSlides="true" :loop="true">
         <swiper-slide v-for="(strategy, index) in strategies" :key="index">
           <div class="strategy-card">
             <p class="strategy-text">{{ strategy }}</p>
           </div>
         </swiper-slide>
       </swiper>
+
+      <div class="swipe-hint">
+        <p>← Swipe cards left or right →</p>
+      </div>
 
       <ion-fab slot="fixed" vertical="bottom" horizontal="end">
         <ion-fab-button>
@@ -96,17 +100,58 @@ export default defineComponent({
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 90%;
-  height: 50%;
+  width: 95%;
+  height: 40%;
   background-color: rgb(230, 230, 230);
   border-radius: 50px;
 }
 
 .strategy-card .strategy-text {
-  font-size: 24px;
-  color: rgb(31, 31, 31);
+  font-size: 1.3rem;
+  color: rgb(30, 30, 30);
+  padding: 7%;
   text-align: center;
-  padding: 5%;
-  font-weight: 700;
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  opacity: 0.7;
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  animation: hithere 9s ease infinite;
+}
+
+@keyframes hithere {
+  0% { transform: scale(1); }
+  5% { transform: scale(0.8); }
+  10%, 20% { transform: rotate(-5deg) scale(0.8); }
+  15% { transform: rotate(5deg) scale(0.8); }
+  25% { transform: rotate(0deg) scale(0.8); }
+  30% { transform: scale(0.8) scale(1); }
+  100% { transform: scale(0.8) scale(1); }
+}
+
+.swipe-hint {
+  position: fixed;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 100;
+}
+
+.swipe-hint p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  margin: 0;
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
 }
 </style>
